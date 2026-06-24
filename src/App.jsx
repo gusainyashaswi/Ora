@@ -1,10 +1,10 @@
+import React from 'react'
+import AppRoutes from './Routes/AppRoutes'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <h2>Heelo</h2>
+      <AppRoutes/>
     </>
   )
 }
