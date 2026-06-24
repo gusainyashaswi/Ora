@@ -5,16 +5,38 @@ import Login from '../Pages/Login/Login'
 import StopWatch from '../Pages/StopWatch/StopWatch'
 import Timer from '../Pages/Timer/Timer'
 import WorldClock from '../Pages/WorldClock/WorldClock'
+import MainLayout from "../layouts/MainLayout";
 
 
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home/>}/>
+      <Route path="/" element={
+        <MainLayout>
+          <Home/>
+        </MainLayout>
+      }/>
+
+      <Route path="/stopwatch" element={
+        <MainLayout>
+          <StopWatch/>
+        </MainLayout>
+      }/>
+
+      <Route path="/timer" element={
+        <MainLayout>
+          <Timer/>
+        </MainLayout>
+      }/>
+
+      <Route path="/worldclock" element={
+        <MainLayout>
+          <WorldClock/>
+        </MainLayout>
+      }/>
+
       <Route path="/login" element={<Login/>}/>
-      <Route path="/stopwatch" element={<StopWatch/>}/>
-      <Route path="/timer" element={<Timer/>}/>
-      <Route path="/worldclock" element={<WorldClock/>}/>
+      
     </Routes>
   )
 }
