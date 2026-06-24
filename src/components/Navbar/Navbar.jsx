@@ -1,18 +1,37 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Navbar() {
   return (
     <nav>
-        <h1>
-            Ora
-        </h1>
-        
-        <Link to="/">Home</Link>
-        <Link to="/timer">Timer</Link>
-        <Link to="/stopwatch">Stopwatch</Link>
-        <Link to="/worldclock">World Clock</Link>
-        <Link to="/login">Login</Link>
+
+        <div>
+         <NavLink to="/" className='text-4xl'>ORA</NavLink>
+        </div>
+
+        <div>
+          
+          <NavLink to="/" className={({ isActive }) =>
+          isActive ? "font-black" : ""
+          }>Home</NavLink>{" "}
+
+          <NavLink to="/timer" className={({ isActive }) =>
+          isActive ? "font-black" : ""
+          }>Timer</NavLink>{" "}
+
+          <NavLink to="/stopwatch" className={({ isActive }) =>
+          isActive ? "font-black" : ""
+          }>Stopwatch</NavLink>{" "}
+
+          <NavLink to="/worldclock" className={({ isActive }) =>
+          isActive ? "font-black" : ""
+          }>World Clock</NavLink>{" "}
+
+        </div>
+
+        <div>
+          <NavLink to="/login">Login</NavLink>
+        </div>
 
     </nav>
   )
