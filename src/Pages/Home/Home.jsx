@@ -1,8 +1,15 @@
 import React from 'react'
+import Clock from '../../components/Clock/Clock'
+
 
 function Home() {
   return (
-    <div>Home</div>
+    <>
+      <div className="flex items-center justify-center min-h-screen">
+        <Clock/>
+      </div>  
+    </>
+
   )
 }
 
