@@ -32,18 +32,21 @@ function StopWatch() {
 
   return (
     <>
-      <div className="flex flex-col items-center text-[#0b57d0]">
-        <h1 className="text-[320px] font-bold leading-none">
-          {hours}:{minutes}:{secs}
-        </h1>
-      </div>
-      <div className='flex justify-center flex-row gap-10 text-xl'>
+      <div className='flex justify-center items-center bg-blue-100 h-screen'>
+        <div>
+          <div className="flex flex-col items-center text-[#0b57d0]">
+            <h1 className="text-[200px] md:text-[260px] lg:text-[320px] font-bold leading-none">
+              {hours}:{minutes}:{secs}
+            </h1>
+          </div>
 
-        {isrunning? <button className={`${btnStyle}`} onClick={()=>setIsRunning(false)}>Stop</button> 
-        :<button className={`${btnStyle}`} onClick={()=>setIsRunning(true)}>Start</button>}
+          <div className='flex justify-center flex-row gap-10 text-xl'>
+            {isrunning? <button className={`${btnStyle}`} onClick={()=>setIsRunning(false)}>Stop</button> 
+            :<button className={`${btnStyle}`} onClick={()=>setIsRunning(true)}>Start</button>}
 
-        <button className={btnStyle} onClick={resetHandler}>Reset</button>
-        
+            <button className={btnStyle} onClick={resetHandler}>Reset</button>
+          </div>
+        </div>
       </div>
     </>
   )
