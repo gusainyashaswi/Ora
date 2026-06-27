@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TodoInput from "../../components/Todo/TodoInput/TodoInput";
 import TodoItem from "../../components/Todo/TodoItem/TodoItem";
 
 function Todo() {
-  const [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+    });
+
+  useEffect(()=>{
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos])
 
   function addTask(task) {
     if (!task.trim()) return;
