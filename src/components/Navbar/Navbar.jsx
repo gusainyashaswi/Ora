@@ -25,6 +25,8 @@ function Navbar() {
 
           <NavLink to="/worldclock" className={navLinkStyle}>World Clock</NavLink>{" "}
 
+          <NavLink to="/todo" className={navLinkStyle}>Todos</NavLink>{" "}
+
         </div>
 
         <div>

@@ -6,6 +6,7 @@ import StopWatch from '../Pages/StopWatch/StopWatch'
 import Timer from '../Pages/Timer/Timer'
 import WorldClock from '../Pages/WorldClock/WorldClock'
 import MainLayout from "../layouts/MainLayout";
+import Todo from "../Pages/Todo/Todo";
 
 
 function AppRoutes() {
@@ -32,6 +33,12 @@ function AppRoutes() {
       <Route path="/worldclock" element={
         <MainLayout>
           <WorldClock/>
+        </MainLayout>
+      }/>
+
+      <Route path="/todo" element={
+        <MainLayout>
+          <Todo/>
         </MainLayout>
       }/>
 

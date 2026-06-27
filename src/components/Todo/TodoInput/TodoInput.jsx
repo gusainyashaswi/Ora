@@ -6,13 +6,14 @@ function TodoInput({addTask}) {
     const [input, setInput] = useState("")
 
     function clickHandler(){
+        if(!input.trim()) return;
         addTask(input)
         setInput("")
     }
 
   return (
     <>
-        <input type="text" placeholder='Enter Task' onChange={(e)=>setInput(e.target.value)}/>
+        <input type="text" value={input} placeholder='Enter Task' onChange={(e)=>setInput(e.target.value)}/>
         <button onClick={clickHandler}>Add Task</button>
     </>
   )
