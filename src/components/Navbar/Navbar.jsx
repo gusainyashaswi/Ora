@@ -1,12 +1,20 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 function Navbar() {
+
+    const navigate = useNavigate()
 
     const navLinkStyle = ({ isActive }) =>
     isActive
       ? "font-bold text-blue-600"
       : "text-gray-700 hover:text-blue-600 transition-colors duration-200";
+
+
+    function logout(){
+      localStorage.removeItem("isLoggedIn");
+      navigate("/login");
+    }
 
   return (
     <nav className="flex items-center justify-between px-10 py-5 border-b border-gray-200 bg-white">
@@ -30,7 +38,7 @@ function Navbar() {
         </div>
 
         <div>
-          <NavLink to="/login" className="px-4 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-200">Login</NavLink>
+          <NavLink to="/login" className="rounded-lg border border-red-500 px-4 py-2 text-red-500 hover:bg-red-500 hover:text-white transition-all" onClick={logout}>Logout</NavLink>
         </div>
 
     </nav>

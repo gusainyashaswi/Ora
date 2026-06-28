@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -8,6 +12,7 @@ function Login() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loginError, setLoginError] = useState("")
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -28,33 +33,38 @@ function Login() {
     }
 
     if (!form.password.trim()) {
-      newErrors.password = "Password is required";
-    } else if (form.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
-    }
-
-    return newErrors;
-  }
+      newErrors.password = "Password is required";} 
+      else if (form.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";}
+    return newErrors;}
 
   function handleSubmit(e) {
     e.preventDefault();
-
     const validationErrors = validate();
-
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-
     setErrors({});
 
-    console.log("Login Successful");
-    console.log(form);
+    if (form.email === demoUser.email && form.password === demoUser.password){
+    localStorage.setItem("isLoggedIn", "true");
+    setLoginError("");
+    navigate("/");
+    }
+    else {
+    setLoginError("Invalid email or password");
+    }
 
     setForm({
       email: "",
       password: "",
     });
+  }
+
+  const demoUser = {
+    email:"abc@gmail.com",
+    password:"abc123",
   }
 
   return (
@@ -126,6 +136,8 @@ function Login() {
               </p>
             )}
           </div>
+
+          {loginError && (<p className="text-red-500 text-center">{loginError}</p>)}
 
           <button
             type="submit"
