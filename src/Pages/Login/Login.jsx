@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
+import { signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 
 function Login() {
 
   const navigate = useNavigate();
   const { login } = useAuth();
+  const googleProvider = new GoogleAuthProvider();
 
   const [form, setForm] = useState({
     email: "",
@@ -17,6 +20,15 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [loginError, setLoginError] = useState("")
+
+  async function handleGoogleLogin() {
+  try {
+    await signInWithPopup(auth, googleProvider);
+    navigate("/");
+  } catch (error) {
+    console.error(error);
+  }
+}
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -155,6 +167,10 @@ function Login() {
             className="w-full rounded-lg bg-[#0b57d0] py-3 text-white font-semibold hover:bg-blue-700 transition"
           >
             Login
+          </button>
+
+          <button onClick={handleGoogleLogin} className="w-full rounded-lg bg-[#0b57d0] py-3 text-white font-semibold hover:bg-blue-700 transition">
+            Continue with Google
           </button>
 
         </form>

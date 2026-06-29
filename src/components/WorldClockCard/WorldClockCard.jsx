@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 function WorldClockCard({ city, country, timezone, flag }) {
 
-  function getCurrentTime() {
+  const getCurrentTime = useCallback(() => {
     return new Date().toLocaleTimeString("en-US", {
       timeZone: timezone,
       hour: "2-digit",
@@ -10,7 +10,7 @@ function WorldClockCard({ city, country, timezone, flag }) {
       second: "2-digit",
       hour12: true,
     });
-  }
+  }, [timezone]);
 
   const [time, setTime] = useState(getCurrentTime());
 
@@ -20,7 +20,7 @@ function WorldClockCard({ city, country, timezone, flag }) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timezone]);
+  }, [getCurrentTime]);
 
   return (
     <div className="rounded-3xl border border-gray-200 bg-white shadow-md hover:shadow-xl transition-all duration-300 p-8">

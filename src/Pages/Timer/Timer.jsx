@@ -23,11 +23,11 @@ function Timer() {
 
     if (timeLeft <= 0) {
       setIsRunning(false);
-      setClassname("bg-blue-100")
+      setClassname("bg-blue-100");
       return;
     }
-    if(timeLeft>0){
-      setClassname("bg-white")
+    if (timeLeft > 0) {
+      setClassname("bg-white");
     }
     const interval = setInterval(() => {
       setTimeLeft((prev) => prev - 1);
