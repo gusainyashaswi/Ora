@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth"
 
 function Login() {
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [form, setForm] = useState({
     email: "",
@@ -48,7 +50,7 @@ function Login() {
     setErrors({});
 
     if (form.email === demoUser.email && form.password === demoUser.password){
-    localStorage.setItem("isLoggedIn", "true");
+    login();
     setLoginError("");
     navigate("/");
     }

@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { use } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import useAuth from '../../hooks/useAuth';
 
 function Navbar() {
 
     const navigate = useNavigate()
+    const {logout} = useAuth()
 
     const navLinkStyle = ({ isActive }) =>
     isActive
@@ -11,8 +13,8 @@ function Navbar() {
       : "text-gray-700 hover:text-blue-600 transition-colors duration-200";
 
 
-    function logout(){
-      localStorage.removeItem("isLoggedIn");
+    function logoutHandler(){
+      logout();
       navigate("/login");
     }
 
@@ -38,7 +40,7 @@ function Navbar() {
         </div>
 
         <div>
-          <NavLink to="/login" className="rounded-lg border border-red-500 px-4 py-2 text-red-500 hover:bg-red-500 hover:text-white transition-all" onClick={logout}>Logout</NavLink>
+          <NavLink to="/login" className="rounded-lg border border-red-500 px-4 py-2 text-red-500 hover:bg-red-500 hover:text-white transition-all" onClick={logoutHandler}>Logout</NavLink>
         </div>
 
     </nav>
