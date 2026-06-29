@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth"
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 function Login() {
 
@@ -40,34 +42,41 @@ function Login() {
       newErrors.password = "Password must be at least 6 characters";}
     return newErrors;}
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-    setErrors({});
+  async function handleSubmit(e) {
+  e.preventDefault();
 
-    if (form.email === demoUser.email && form.password === demoUser.password){
+  const validationErrors = validate();
+
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+
+  setErrors({});
+
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      form.email,
+      form.password
+    );
+
     login();
+
     setLoginError("");
-    navigate("/");
-    }
-    else {
-    setLoginError("Invalid email or password");
-    }
 
     setForm({
       email: "",
       password: "",
     });
-  }
 
-  const demoUser = {
-    email:"abc@gmail.com",
-    password:"abc123",
+    navigate("/");
+  } catch (error) {
+    console.error(error);
+
+    setLoginError("Invalid email or password");
   }
+}
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">

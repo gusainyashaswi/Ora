@@ -1,27 +1,28 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("isLoggedIn") === "true"
-  );
 
-  function login() {
-    localStorage.setItem("isLoggedIn", "true");
-    setIsLoggedIn(true);
-  }
+  const [user, setUser] = useState(null);
 
-  function logout() {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-  }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+    });
+    return () => unsubscribe();
+    }, []);
+
+  async function logout() {
+    await signOut(auth);
+}
 
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn,
-        login,
+        user,
         logout,
       }}
     >
