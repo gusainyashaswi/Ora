@@ -10,64 +10,71 @@ function TodoItem({ todo, onDelete, onToggle, onEdit }) {
   }
 
   return (
-    <div className="flex items-center justify-between rounded-xl border border-gray-200 px-5 py-4 shadow-sm hover:shadow-md transition-all duration-200">
+    <div
+      className={`flex items-center gap-4 px-4 py-3.5 rounded-2xl border transition-all duration-200 group ${
+        todo.completed
+          ? "bg-gray-50 border-gray-200"
+          : "bg-white border-gray-200 hover:border-gray-300"
+      }`}
+    >
+      {/* Checkbox */}
+      <button
+        onClick={() => onToggle(todo.id)}
+        className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 cursor-pointer ${
+          todo.completed
+            ? "bg-[#0b57d0] border-[#0b57d0]"
+            : "border-gray-400 hover:border-[#0b57d0]"
+        }`}
+        aria-label={todo.completed ? "Mark incomplete" : "Mark complete"}
+      >
+        {todo.completed && (
+          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        )}
+      </button>
 
-      <div className="flex items-center gap-4 flex-1">
-
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={() => onToggle(todo.id)}
-          className="h-5 w-5 accent-[#0b57d0]"
-        />
-
+      {/* Task text / inline edit */}
+      <div className="flex-1 min-w-0">
         {isEditing ? (
           <input
             type="text"
             value={editedText}
             onChange={(e) => setEditedText(e.target.value)}
-            className="border rounded-lg px-3 py-1 flex-1 outline-none"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") saveHandler();
+              if (e.key === "Escape") {
+                setEditedText(todo.text);
+                setIsEditing(false);
+              }
+            }}
+            onBlur={saveHandler}
+            autoFocus
+            className="w-full bg-transparent border-b-2 border-[#0b57d0] outline-none text-sm font-medium text-gray-800 py-0.5"
           />
         ) : (
           <p
-            className={`text-xl ${
+            onDoubleClick={() => setIsEditing(true)}
+            className={`text-sm font-medium truncate transition-all duration-200 cursor-default ${
               todo.completed
                 ? "line-through text-gray-400"
-                : "text-gray-900"
+                : "text-gray-800"
             }`}
+            title="Double-click to edit"
           >
             {todo.text}
           </p>
         )}
-
       </div>
 
-      <div className="flex gap-3">
-
-        {isEditing ? (
-          <button
-            onClick={saveHandler}
-            className="rounded-lg border border-green-600 px-4 py-2 text-green-600 hover:bg-green-600 hover:text-white transition-all"
-          >
-            Save
-          </button>
-        ) : (
-          <button
-            onClick={() => setIsEditing(true)}
-            className="rounded-lg border border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-600 hover:text-white transition-all"
-          >
-            Edit
-          </button>
-        )}
-
-        <button
-          onClick={() => onDelete(todo.id)}
-          className="rounded-lg border border-red-500 px-4 py-2 text-red-500 hover:bg-red-500 hover:text-white transition-all"
-        >
-          Delete
-        </button>
-
-      </div>
+      {/* Delete × */}
+      <button
+        onClick={() => onDelete(todo.id)}
+        className="flex-shrink-0 text-gray-400 hover:text-gray-700 transition-colors duration-150 cursor-pointer text-lg leading-none font-medium opacity-0 group-hover:opacity-100 focus:opacity-100"
+        aria-label="Delete task"
+      >
+        ×
+      </button>
     </div>
   );
 }

@@ -22,13 +22,13 @@ function Login() {
   const [loginError, setLoginError] = useState("")
 
   async function handleGoogleLogin() {
-  try {
-    await signInWithPopup(auth, googleProvider);
-    navigate("/");
-  } catch (error) {
-    console.error(error);
+    try {
+      await signInWithPopup(auth, googleProvider);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
   }
-}
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -49,46 +49,49 @@ function Login() {
     }
 
     if (!form.password.trim()) {
-      newErrors.password = "Password is required";} 
-      else if (form.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";}
-    return newErrors;}
+      newErrors.password = "Password is required";
+    }
+    else if (form.password.length < 6) {
+      newErrors.password = "Password must be at least 6 characters";
+    }
+    return newErrors;
+  }
 
   async function handleSubmit(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const validationErrors = validate();
+    const validationErrors = validate();
 
-  if (Object.keys(validationErrors).length > 0) {
-    setErrors(validationErrors);
-    return;
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setErrors({});
+
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
+
+      login();
+
+      setLoginError("");
+
+      setForm({
+        email: "",
+        password: "",
+      });
+
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+
+      setLoginError("Invalid email or password");
+    }
   }
-
-  setErrors({});
-
-  try {
-    await signInWithEmailAndPassword(
-      auth,
-      form.email,
-      form.password
-    );
-
-    login();
-
-    setLoginError("");
-
-    setForm({
-      email: "",
-      password: "",
-    });
-
-    navigate("/");
-  } catch (error) {
-    console.error(error);
-
-    setLoginError("Invalid email or password");
-  }
-}
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">

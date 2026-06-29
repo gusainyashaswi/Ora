@@ -25,7 +25,7 @@ function Clock() {
 
   return (
     <div className="flex flex-col items-center text-[#0b57d0]">
-      
+
       <h1 className="text-[320px] font-bold leading-none">
         {hours}:{minutes}:{seconds}
         <span className="text-[50px] font-medium tracking-widest">{ampm}</span>

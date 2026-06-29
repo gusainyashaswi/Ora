@@ -11,11 +11,11 @@ function Timer() {
 
   const [isRunning, setIsRunning] = useState(false);
 
-  if(hoursInput<0)
+  if (hoursInput < 0)
     setHoursInput("")
-  if(secondsInput<0)
+  if (secondsInput < 0)
     setSecondsInput("")
-  if(minutesInput<0)
+  if (minutesInput < 0)
     setMinutesInput("")
 
   useEffect(() => {
