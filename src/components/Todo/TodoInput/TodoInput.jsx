@@ -24,7 +24,7 @@ function TodoInput({ addTask }) {
 
       <button
         onClick={clickHandler}
-        className="w-12 h-12 rounded-2xl bg-gray-800 hover:bg-[#0b57d0] text-white text-2xl font-light flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md flex-shrink-0"
+        className="w-12 h-12 rounded-2xl bg-gray-800 hover:bg-green-600 hover:text-black text-white text-2xl font-light flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md flex-shrink-0"
         aria-label="Add task"
       >
         +

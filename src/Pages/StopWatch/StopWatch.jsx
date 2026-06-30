@@ -40,16 +40,13 @@ function StopWatch() {
     return `${h}:${m}:${s}.${cs}`;
   };
 
-  // Show hours segment only when hours > 0
   const showHours = elapsed >= 3600000;
 
   return (
-    <div className="bg-[#ebebeb] min-h-[calc(100vh-82px)]">
+    <div className="min-h-[calc(100vh-82px)]">
       <div className="flex flex-col justify-between items-center w-full min-h-[calc(100vh-82px)] px-12 py-16 text-black select-none">
-        {/* Top spacing helper */}
         <div className="h-4" />
 
-        {/* Giant Stopwatch Display */}
         <div className="flex-1 flex items-center justify-center w-full">
           <div className="flex items-baseline justify-center">
             {showHours && (
@@ -69,9 +66,7 @@ function StopWatch() {
           </div>
         </div>
 
-        {/* Bottom Row — matches Home page layout */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-gray-300/30 pt-8 mt-4">
-          {/* Left: Status */}
           <div className="text-center sm:text-left">
             <span className="text-[10px] font-bold text-gray-400 tracking-wider uppercase">Status</span>
             <span className="block text-sm font-bold text-gray-600 mt-0.5">
@@ -79,9 +74,7 @@ function StopWatch() {
             </span>
           </div>
 
-          {/* Middle: Controls */}
           <div className="flex items-center gap-3">
-            {/* Lap button — only when running */}
             {isRunning && (
               <button
                 onClick={handleLap}
@@ -91,7 +84,6 @@ function StopWatch() {
               </button>
             )}
 
-            {/* Start / Stop pill */}
             <button
               onClick={handleStartStop}
               className={`px-8 py-2.5 text-sm font-extrabold rounded-full cursor-pointer transition-all duration-150 active:scale-95 shadow-sm ${
@@ -103,7 +95,6 @@ function StopWatch() {
               {isRunning ? "Stop" : elapsed > 0 ? "Resume" : "Start"}
             </button>
 
-            {/* Reset button — only when stopped and elapsed > 0 */}
             {!isRunning && elapsed > 0 && (
               <button
                 onClick={handleReset}
@@ -114,7 +105,6 @@ function StopWatch() {
             )}
           </div>
 
-          {/* Right: Lap count */}
           <div className="text-center sm:text-right">
             <span className="text-[10px] font-bold text-gray-400 tracking-wider uppercase">Laps</span>
             <span className="block text-sm font-bold text-gray-600 mt-0.5">
@@ -123,7 +113,6 @@ function StopWatch() {
           </div>
         </div>
 
-        {/* Lap times list */}
         {laps.length > 0 && (
           <div className="w-full max-w-md mt-8 flex flex-col gap-1">
             {laps.map((lapTime, index) => (

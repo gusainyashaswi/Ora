@@ -5,12 +5,10 @@ function Timer() {
   const [isRunning, setIsRunning] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
 
-  // Input state — only used before timer starts
   const [hoursInput, setHoursInput] = useState("");
   const [minutesInput, setMinutesInput] = useState("");
   const [secondsInput, setSecondsInput] = useState("");
 
-  // Preset durations in seconds
   const presets = [
     { label: "1m", value: 60 },
     { label: "5m", value: 300 },
@@ -87,19 +85,15 @@ function Timer() {
     }
   };
 
-  // Determine if we're in the "set time" mode (not started yet)
   const isSettingTime = timeLeft === 0 && !isRunning && !isFinished;
 
   return (
-    <div className="bg-[#ebebeb] min-h-[calc(100vh-82px)]">
+    <div className="min-h-[calc(100vh-82px)]">
       <div className="flex flex-col justify-between items-center w-full min-h-[calc(100vh-82px)] px-12 py-16 text-black select-none">
-        {/* Top spacing helper */}
         <div className="h-4" />
 
-        {/* Giant Timer Display */}
         <div className="flex-1 flex flex-col items-center justify-center w-full gap-10">
           <div className="flex items-baseline justify-center">
-            {/* Time display when running or paused or finished */}
             {!isSettingTime ? (
               <>
                 {showHours && (
@@ -149,14 +143,12 @@ function Timer() {
             )}
           </div>
 
-          {/* Finished label */}
           {isFinished && (
             <span className="text-sm font-extrabold text-red-500 tracking-widest uppercase animate-pulse">
               Time's up
             </span>
           )}
 
-          {/* Presets row — visible in setting mode */}
           {isSettingTime && (
             <div className="flex flex-wrap items-center justify-center gap-2 mt-2">
               {presets.map((p) => (
@@ -172,9 +164,7 @@ function Timer() {
           )}
         </div>
 
-        {/* Bottom Row — matches Home page layout */}
         <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-gray-300/30 pt-8 mt-4">
-          {/* Left: Status */}
           <div className="text-center sm:text-left">
             <span className="text-[10px] font-bold text-gray-400 tracking-wider uppercase">Status</span>
             <span className="block text-sm font-bold text-gray-600 mt-0.5">
@@ -182,9 +172,7 @@ function Timer() {
             </span>
           </div>
 
-          {/* Middle: Controls */}
           <div className="flex items-center gap-3">
-            {/* Start / Stop pill */}
             <button
               onClick={isRunning ? handleStop : handleStart}
               className={`px-8 py-2.5 text-sm font-extrabold rounded-full cursor-pointer transition-all duration-150 active:scale-95 shadow-sm ${
@@ -196,7 +184,6 @@ function Timer() {
               {isRunning ? "Pause" : timeLeft > 0 && !isFinished ? "Resume" : "Start"}
             </button>
 
-            {/* Reset button — only when there's something to reset */}
             {(timeLeft > 0 || isFinished) && !isRunning && (
               <button
                 onClick={handleReset}
@@ -207,7 +194,6 @@ function Timer() {
             )}
           </div>
 
-          {/* Right: Remaining info */}
           <div className="text-center sm:text-right">
             <span className="text-[10px] font-bold text-gray-400 tracking-wider uppercase">Remaining</span>
             <span className="block text-sm font-bold text-gray-600 mt-0.5 font-mono tabular-nums">

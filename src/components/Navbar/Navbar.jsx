@@ -18,7 +18,6 @@ function Navbar() {
   return (
     <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl flex items-center justify-between px-8 py-3 rounded-[1.8rem] bg-white/80 backdrop-blur-md border border-white/30 shadow-lg shadow-black/[0.02] backdrop-saturate-150 transition-all duration-300">
       
-      {/* Brand logo */}
       <div>
         <NavLink 
           to="/" 
@@ -28,7 +27,6 @@ function Navbar() {
         </NavLink>
       </div>
 
-      {/* Nav links */}
       <div className="flex items-center gap-8 md:gap-10">
         <NavLink to="/" className={navLinkStyle}>Home</NavLink>
         <NavLink to="/timer" className={navLinkStyle}>Timer</NavLink>
@@ -37,7 +35,6 @@ function Navbar() {
         <NavLink to="/todo" className={navLinkStyle}>Todos</NavLink>
       </div>
 
-      {/* Logout control */}
       <div>
         <button 
           onClick={logoutHandler}

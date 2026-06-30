@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import { signInWithPopup } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
+import Lightfall from "../../components/Lightfall/Lightfall";
 
 function Login() {
 
@@ -94,8 +95,27 @@ function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-6">
-      <div className="w-full max-w-md rounded-2xl bg-white shadow-xl p-8">
+    <div className="min-h-screen flex items-center justify-center px-6 relative">
+      <div className="fixed inset-0 -z-10 bg-[#ebebeb]">
+        <Lightfall
+          colors={['#0b57d0', '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd']}
+          speed={0.4}
+          streakCount={40}
+          streakWidth={1.5}
+          streakLength={1.2}
+          glow={1}
+          density={0.4}
+          twinkle={1.0}
+          zoom={2.5}
+          backgroundGlow={0}
+          opacity={0.8}
+          mouseInteraction={true}
+          mouseStrength={1.0}
+          mouseRadius={0.8}
+        />
+      </div>
+
+      <div className="w-full max-w-md rounded-2xl bg-white/80 backdrop-blur-md border border-white/40 shadow-2xl p-8">
 
         <h1 className="text-4xl font-bold text-center text-[#0b57d0]">
           ORA

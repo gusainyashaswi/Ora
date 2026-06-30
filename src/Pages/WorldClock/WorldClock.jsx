@@ -31,7 +31,6 @@ function WorldClock() {
     localStorage.setItem("world_clock_24h", JSON.stringify(is24Hour));
   }, [is24Hour]);
 
-  // Handle escape key to close modal
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -57,7 +56,6 @@ function WorldClock() {
 
   const filtered = AVAILABLE_CITIES.filter((item) => {
     const query = searchQuery.toLowerCase();
-    // Don't show cities that are already added
     const isAlreadyAdded = cities.some(
       (c) => c.timezone === item.timezone && c.city === item.city
     );
@@ -72,7 +70,6 @@ function WorldClock() {
 
   return (
     <div className="w-full max-w-5xl mx-auto px-6 py-12 md:py-20 min-h-[calc(100vh-80px)]">
-      {/* Header section */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-gray-150 pb-8">
         <div>
           <h1 className="text-4xl font-black text-gray-900 tracking-tight">
@@ -83,7 +80,7 @@ function WorldClock() {
           </p>
         </div>
 
-        {/* 12h / 24h Toggle */}
+      
         <div className="flex items-center gap-3 bg-gray-50 border border-gray-150 px-4 py-2 rounded-2xl w-fit self-start md:self-auto shadow-sm">
           <span className="text-xs font-bold text-gray-400 font-mono">12h</span>
           <button
@@ -103,7 +100,6 @@ function WorldClock() {
         </div>
       </div>
 
-      {/* Empty State */}
       {cities.length === 0 && (
         <div className="text-center py-20 bg-gray-50 rounded-[2.2rem] border border-gray-100 mb-8 px-6">
           <p className="text-gray-400 font-bold text-lg">No city clocks added yet.</p>
@@ -117,7 +113,6 @@ function WorldClock() {
         </div>
       )}
 
-      {/* Grid of clocks */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {cities.map((cityObj, index) => (
           <WorldClockCard
@@ -128,7 +123,6 @@ function WorldClock() {
           />
         ))}
 
-        {/* Dash-border Add Card */}
         {cities.length > 0 && (
           <button
             onClick={() => setIsModalOpen(true)}
@@ -194,7 +188,6 @@ function WorldClock() {
               </button>
             </div>
 
-            {/* Search input field */}
             <div className="px-8 py-5 border-b border-gray-150 bg-gray-50/50">
               <div className="relative">
                 <input
@@ -222,7 +215,6 @@ function WorldClock() {
               </div>
             </div>
 
-            {/* Search results list */}
             <div className="flex-1 overflow-y-auto px-6 py-4 divide-y divide-gray-50 max-h-[400px]">
               {filtered.length > 0 ? (
                 filtered.map((item) => (
@@ -232,7 +224,7 @@ function WorldClock() {
                     className="w-full text-left px-4 py-4 hover:bg-blue-50/40 rounded-[1.5rem] flex items-center justify-between transition-all duration-200 group cursor-pointer border border-transparent hover:border-blue-100/50"
                   >
                     <div className="flex items-center gap-4">
-                      <span className="text-3xl select-none">{item.flag}</span>
+                      <span className="text-3xl select-none"></span>
                       <div>
                         <h4 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                           {item.city}
