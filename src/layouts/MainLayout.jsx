@@ -3,11 +3,13 @@ import { Outlet } from 'react-router-dom'
 
 function MainLayout() {
   return (
-    <div>
+    <div className="bg-[#ebebeb] min-h-screen">
       <Navbar />
-      <Outlet />
+      <main className="pt-28 pb-12">
+        <Outlet />
+      </main>
     </div>
-  )
+  );
 }
 
-export default MainLayout
+export default MainLayout;
