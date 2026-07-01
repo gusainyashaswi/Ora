@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
-import { Renderer, Program, Mesh, Triangle } from 'ogl';
-import './Lightfall.css';
+import { memo, useEffect, useRef } from "react";
+import { Renderer, Program, Mesh, Triangle } from "ogl";
+import "./Lightfall.css";
 
 const MAX_COLORS = 8;
 
@@ -199,6 +199,7 @@ const Lightfall = ({
   const lastTimeRef = useRef(0);
 
   useEffect(() => {
+    console.log("Lightfall mounted");
     const container = containerRef.current;
     if (!container) return;
 
@@ -330,24 +331,13 @@ const Lightfall = ({
       rendererRef.current = null;
     };
   }, [
-    dpr,
-    paused,
-    colors,
-    backgroundColor,
     speed,
-    streakCount,
-    streakWidth,
-    streakLength,
+
     glow,
-    density,
-    twinkle,
-    zoom,
-    backgroundGlow,
+
     opacity,
-    mouseInteraction,
+
     mouseStrength,
-    mouseRadius,
-    mouseDampening
   ]);
 
   return (
@@ -361,4 +351,4 @@ const Lightfall = ({
   );
 };
 
-export default Lightfall;
+export default memo(Lightfall);

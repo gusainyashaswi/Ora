@@ -9,6 +9,14 @@ import Lightfall from "../../components/Lightfall/Lightfall";
 
 function Login() {
 
+  const LIGHTFALL_COLORS = [
+  "#0b57d0",
+  "#2563eb",
+  "#3b82f6",
+  "#60a5fa",
+  "#93c5fd",
+];
+
   const navigate = useNavigate();
   const { login } = useAuth();
   const googleProvider = new GoogleAuthProvider();
@@ -100,7 +108,7 @@ function Login() {
     <div className="min-h-screen flex items-center justify-center px-6 relative">
       <div className="fixed inset-0 -z-10 bg-[#ebebeb]">
         <Lightfall
-          colors={['#0b57d0', '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd']}
+          colors={LIGHTFALL_COLORS}
           speed={0.4}
           streakCount={40}
           streakWidth={1.5}
@@ -117,13 +125,13 @@ function Login() {
         />
       </div>
 
-      <div className="w-full max-w-md rounded-2xl bg-white/80 backdrop-blur-md border border-white/40 shadow-2xl p-8">
+      <div className="w-full max-w-md rounded-2xl bg-transparent backdrop-blur-xs border border-none shadow-2xl p-8">
 
-        <h1 className="text-4xl font-bold text-center text-[#0b57d0]">
+        <h1 className="text-4xl font-bold text-center tracking-[0.35em] text-black">
           ORA
         </h1>
 
-        <p className="text-center text-gray-500 mt-2 mb-8">
+        <p className="text-center text-gray-600 mt-2 mb-8">
           Welcome Back
         </p>
 
@@ -131,7 +139,7 @@ function Login() {
 
 
           <div>
-            <label className="block mb-2 font-medium">
+            <label className="block mb-2 font-medium text-black">
               Email
             </label>
 
@@ -141,7 +149,7 @@ function Login() {
               value={form.email}
               onChange={handleChange}
               placeholder="Enter your email"
-              className="w-full rounded-lg border px-4 py-3 outline-none focus:border-[#0b57d0] text-blue-600"
+              className="w-full border-b px-4 py-3 outline-none focus:border-b-3 hover:border-b-2 transition text-black"
             />
 
             {errors.email && (
@@ -153,11 +161,11 @@ function Login() {
 
 
           <div>
-            <label className="block mb-2 font-medium">
+            <label className="block mb-2 font-medium text-black">
               Password
             </label>
 
-            <div className="flex items-center border rounded-lg px-4 focus-within:border-[#0b57d0]">
+            <div className="flex items-center border-b px-4 focus-within:border-b-3 hover:border-b-2 transition-all">
 
               <input
                 type={showPassword ? "text" : "password"}
@@ -165,13 +173,13 @@ function Login() {
                 value={form.password}
                 onChange={handleChange}
                 placeholder="Enter your password"
-                className="w-full py-3 outline-none  text-blue-600 focus:border-[#0b57d0]"
+                className="w-full py-3 outline-none  text-black"
               />
 
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="text-[#0b57d0] font-medium"
+                className="text-black font-medium"
               >
                 {showPassword ? "Hide" : "Show"}
               </button>
@@ -189,12 +197,12 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-[#0b57d0] py-3 text-white font-semibold hover:bg-blue-700 transition"
+            className="w-full rounded-lg bg-black py-3 text-white font-semibold hover:bg-gray-600 hover:text-white transition"
           >
             Login
           </button>
 
-          <button type="button" onClick={handleGoogleLogin} className="w-full rounded-lg bg-[#0b57d0] py-3 text-white font-semibold hover:bg-blue-700 transition">
+          <button type="button" onClick={handleGoogleLogin} className="w-full rounded-lg bg-black py-3 text-white font-semibold hover:bg-gray-600 hover:text-white transition">
             Continue with Google
           </button>
 
