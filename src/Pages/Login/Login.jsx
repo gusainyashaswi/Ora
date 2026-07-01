@@ -23,13 +23,15 @@ function Login() {
   const [loginError, setLoginError] = useState("")
 
   async function handleGoogleLogin() {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    }
+  try {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
+    navigate("/");
+  } catch (error) {
+    console.error(error);
   }
+
+}
 
   function handleChange(e) {
     const { name, value } = e.target;
