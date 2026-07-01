@@ -81,12 +81,12 @@ function WorldClock() {
         </div>
 
       
-        <div className="flex items-center gap-3 bg-gray-50 border border-gray-150 px-4 py-2 rounded-2xl w-fit self-start md:self-auto shadow-sm">
+        <div className="flex items-center gap-3 bg-gray-50 border-none px-4 py-2 rounded-2xl w-fit self-start md:self-auto shadow-sm">
           <span className="text-xs font-bold text-gray-400 font-mono">12h</span>
           <button
             onClick={() => setIs24Hour(!is24Hour)}
             className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-              is24Hour ? "bg-blue-600" : "bg-gray-200"
+              is24Hour ? "bg-gray-600" : "bg-gray-200"
             }`}
             aria-label="Toggle time format"
           >
@@ -126,10 +126,10 @@ function WorldClock() {
         {cities.length > 0 && (
           <button
             onClick={() => setIsModalOpen(true)}
-            className="group border-2 border-dashed border-gray-200 hover:border-blue-500 bg-transparent flex flex-col items-center justify-center min-h-[220px] rounded-[2.2rem] cursor-pointer hover:bg-blue-50/10 transition-all duration-300 active:scale-95"
+            className="group border-2 border-dashed border-gray-200 hover:border-gray-600 bg-transparent flex flex-col items-center justify-center min-h-[220px] rounded-[2.2rem] cursor-pointer hover:bg-blue-50/10 transition-all duration-300 active:scale-95"
           >
             <div className="flex flex-col items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gray-50 group-hover:bg-blue-500/10 flex items-center justify-center text-gray-400 group-hover:text-blue-500 transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-gray-50 group-hover:bg-gray-600 flex items-center justify-center text-gray-400 group-hover:text-white transition-all duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -141,7 +141,7 @@ function WorldClock() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
               </div>
-              <span className="text-base font-bold text-gray-400 group-hover:text-blue-500 transition-colors duration-300">
+              <span className="text-base font-bold text-gray-400 group-hover:text-gray-600 transition-colors duration-300">
                 Add City Clock
               </span>
             </div>
@@ -196,7 +196,7 @@ function WorldClock() {
                   placeholder="Search by city, country or timezone..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-white border border-gray-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm font-medium text-gray-800 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all shadow-sm"
+                  className="w-full bg-white border border-gray-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm font-medium text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gray-100 focus:ring-1 focus:ring-gray-600 transition-all shadow-sm"
                 />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -226,7 +226,7 @@ function WorldClock() {
                     <div className="flex items-center gap-4">
                       <span className="text-3xl select-none"></span>
                       <div>
-                        <h4 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                        <h4 className="font-bold text-gray-900 group-hover:text-gray-600 transition-colors">
                           {item.city}
                         </h4>
                         <p className="text-xs text-gray-450 font-medium mt-0.5">
@@ -234,7 +234,7 @@ function WorldClock() {
                         </p>
                       </div>
                     </div>
-                    <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-blue-650 group-hover:border-blue-650 group-hover:text-white transition-all shadow-sm">
+                    <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 group-hover:bg-gray-600 group-hover:border-blue-650 group-hover:text-white transition-all shadow-sm">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

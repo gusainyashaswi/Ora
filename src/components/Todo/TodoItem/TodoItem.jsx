@@ -17,13 +17,12 @@ function TodoItem({ todo, onDelete, onToggle, onEdit }) {
           : "bg-white border-gray-200 hover:border-gray-300"
       }`}
     >
-      {/* Checkbox */}
       <button
         onClick={() => onToggle(todo.id)}
-        className={`flex-shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 cursor-pointer ${
+        className={`shrink-0 w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 cursor-pointer ${
           todo.completed
-            ? "bg-[#0b57d0] border-[#0b57d0]"
-            : "border-gray-400 hover:border-[#0b57d0]"
+            ? "bg-gray-600 border-none"
+            : "border-gray-400 hover:border-3"
         }`}
         aria-label={todo.completed ? "Mark incomplete" : "Mark complete"}
       >
@@ -34,7 +33,6 @@ function TodoItem({ todo, onDelete, onToggle, onEdit }) {
         )}
       </button>
 
-      {/* Task text / inline edit */}
       <div className="flex-1 min-w-0">
         {isEditing ? (
           <input
@@ -50,7 +48,7 @@ function TodoItem({ todo, onDelete, onToggle, onEdit }) {
             }}
             onBlur={saveHandler}
             autoFocus
-            className="w-full bg-transparent border-b-2 border-[#0b57d0] outline-none text-sm font-medium text-gray-800 py-0.5"
+            className="w-full bg-transparent border-b-2 border-gray-600 outline-none text-sm font-medium text-gray-800 py-0.5"
           />
         ) : (
           <p
@@ -67,7 +65,6 @@ function TodoItem({ todo, onDelete, onToggle, onEdit }) {
         )}
       </div>
 
-      {/* Delete × */}
       <button
         onClick={() => onDelete(todo.id)}
         className="flex-shrink-0 text-gray-400 hover:text-gray-700 transition-colors duration-150 cursor-pointer text-lg leading-none font-medium opacity-0 group-hover:opacity-100 focus:opacity-100"

@@ -99,7 +99,7 @@ function Todo() {
               onClick={() => setFilter(f)}
               className={`text-sm font-semibold capitalize pb-0.5 transition-all duration-150 cursor-pointer ${
                 filter === f
-                  ? "text-[#0b57d0] border-b-2 border-[#0b57d0]"
+                  ? "text-gray-600 border-b-2 border-gray-600"
                   : "text-gray-400 hover:text-gray-700"
               }`}
             >
@@ -118,7 +118,6 @@ function Todo() {
         </div>
       )}
 
-      {/* Task list */}
       <div className="mt-4 flex flex-col gap-3">
         {filteredTodos.length > 0 ? (
           filteredTodos.map((todo) => (
@@ -140,9 +139,9 @@ function Todo() {
       {/* Footer */}
       {todos.length > 0 && (
         <div className="mt-10 space-y-3">
-          <p className="text-sm font-bold text-gray-700">
+          <p className="text-sm font-bold text-gray-600">
             Your remaining todos :{" "}
-            <span className="text-[#0b57d0]">{remainingCount}</span>
+            <span className="text-black">{remainingCount}</span>
           </p>
           <p className="text-sm text-gray-400 italic leading-relaxed">
             {quote}
