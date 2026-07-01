@@ -24,12 +24,14 @@ function Login() {
 
   async function handleGoogleLogin() {
   try {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+    await signInWithPopup(auth, googleProvider);
     navigate("/");
   } catch (error) {
-    console.error(error);
+    console.log("Error Code:", error.code);
+    console.log("Error Message:", error.message);
+    console.log(error);
   }
+}
 
 }
 
@@ -194,7 +196,7 @@ function Login() {
             Login
           </button>
 
-          <button onClick={handleGoogleLogin} className="w-full rounded-lg bg-[#0b57d0] py-3 text-white font-semibold hover:bg-blue-700 transition">
+          <button type="button" onClick={handleGoogleLogin} className="w-full rounded-lg bg-[#0b57d0] py-3 text-white font-semibold hover:bg-blue-700 transition">
             Continue with Google
           </button>
 
