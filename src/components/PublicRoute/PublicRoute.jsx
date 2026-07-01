@@ -3,11 +3,15 @@ import useAuth from '../../hooks/useAuth';
 
 function PublicRoute({children}) {
 
-    const {user} = useAuth();
+    const { user, loading } = useAuth();
+  if (loading) {
+    return <h1>Just a moment...</h1>;
+  }
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
 
-    if(user) return <Navigate to="/" replace/>
-
-  return children;
+return children;
 }
 
 export default PublicRoute
