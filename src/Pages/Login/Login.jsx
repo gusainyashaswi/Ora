@@ -206,6 +206,15 @@ function Login() {
             Continue with Google
           </button>
 
+          <div className="items-center flex flex-col">
+            <h3 className="font-bold">Demo Credentials</h3>
+            <div className="flex flex-col justify-center items-center">
+            <p>Email: demo@ora.com</p>
+            <p>Password: demo123</p>
+            </div>
+
+          </div>
+
         </form>
       </div>
     </div>
