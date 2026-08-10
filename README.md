@@ -10,7 +10,7 @@
 
 ---
 
-## 🚀 Live Demo & Key Features
+## Live Demo & Key Features
 
 ORA brings together a suite of essential utility applications in a unified, secured space:
 
@@ -25,7 +25,7 @@ ORA brings together a suite of essential utility applications in a unified, secu
 
 ---
 
-## 🎨 Design & Theme
+## Design & Theme
 
 The project relies on a clean, modern aesthetic centered around the **Google Blue (`#0b57d0`)** palette:
 - **Clean Forms & Validation**: Custom error reporting, active input highlights, and toggleable password visibility.
