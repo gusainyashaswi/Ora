@@ -8,7 +8,7 @@ function ProtectedRoute({children}) {
 
     if (loading) {
         return (
-        <div className='flex justify-center items-center h-screen'>
+        <div className='app-shell flex justify-center items-center h-screen'>
             <h1 className='font-bold text-6xl italic'>Just a moment...</h1>;
         </div>
     )
