@@ -1,14 +1,15 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 function StopWatch() {
   const [elapsed, setElapsed] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [laps, setLaps] = useState([]);
+  const startedAt = useRef(null);
 
   useEffect(() => {
     if (!isRunning) return;
     const interval = setInterval(() => {
-      setElapsed((prev) => prev + 10);
+      setElapsed(performance.now() - startedAt.current);
     }, 10);
     return () => clearInterval(interval);
   }, [isRunning]);
@@ -19,11 +20,18 @@ function StopWatch() {
   const centiseconds = String(Math.floor((elapsed % 1000) / 10)).padStart(2, "0");
 
   const handleStartStop = useCallback(() => {
-    setIsRunning((prev) => !prev);
-  }, []);
+    if (isRunning) {
+      setElapsed(performance.now() - startedAt.current);
+      setIsRunning(false);
+    } else {
+      startedAt.current = performance.now() - elapsed;
+      setIsRunning(true);
+    }
+  }, [elapsed, isRunning]);
 
   const handleReset = useCallback(() => {
     setIsRunning(false);
+    startedAt.current = null;
     setElapsed(0);
     setLaps([]);
   }, []);
